@@ -1,0 +1,25 @@
+hr {
+    margin: 30px 0;
+}
+
+body {
+    margin: 20px;
+}
+
+.float-container {
+    border: 5px solid #fcc;
+    background-color: #fcc;
+    width: 200px;
+}
+
+.clear-float:after {
+    content: 'xxx';
+    visibility: hidden;
+    clear: both;
+}
+
+.sample-container {
+    border: 1px solid black;
+    width:500px;
+    margin: 0 auto;
+}
