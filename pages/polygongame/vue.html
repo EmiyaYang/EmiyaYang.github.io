@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue官方教程学习</title>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    <div id="main">
+        <h1 v-once>{{constMsg}}</h1>
+        <div v-html="htmlMsg"></div>
+        <p v-if="clickNum === 0" :class="{redText: clickNum}">{{message}}</p>
+        <template v-else>
+            <p :class="reverseClassObject">{{reversedMsg}}</p>
+            <span>{{clickNum}}</span>
+        </template>
+        <!--Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 v-bind 指令：-->
+        <div>
+            <button v-bind:disabled="isBtnDisabled" v-on:click="addClickNum">Whassup?</button>
+            <!--这两个指令可以缩写-->
+            <!--<button :disabled="isBtnDisabled" @click="addClickNum">Whassup?</button>-->
+        </div>
+
+        <!--对象遍历-->
+        <div v-for="(value, key, index) in profile">
+            {{ key }}: {{ value }}
+        </div>
+
+        <div>
+            <input type="text" v-model="question">
+            <p>{{answer}}</p>
+        </div>
+
+        <div>
+            <ul>
+                <li v-for="(item, index) in history">
+                    <span>{{index}}</span>
+                    -
+                    <span>{{item.q}}</span>
+                    -
+                    <span>{{item.a}}</span>
+                </li>
+            </ul>
+        </div>
+
+        <div @click="alert('div', $event)">
+            <ul>
+                <li>
+                    <a @click="openUrl('http://www.google.com')">No decorators</a>
+                </li>
+                <li>
+                    <!-- 阻止单击事件继续传播 -->
+                    <a @click.stop="openUrl('http://www.google.com')">Stop</a>
+                </li>
+                <li>
+                    <!--阻止原生事件-->
+                    <a @click.prevent="openUrl('http://www.google.com')">Prevent</a>
+                </li>
+                <li>
+                    <!-- 只当在 event.target 是当前元素自身时触发处理函数 -->
+                    <!-- 即事件不是从内部元素触发的 -->
+                    <a @click.self="openUrl('http://www.google.com')">Self</a>
+                </li>
+                <li>
+                    <!-- 添加事件监听器时使用事件捕获模式 -->
+                    <!-- 即元素自身触发的事件先在此处处理，然后才交由内部元素进行处理 -->
+                    <a @click.capture="openUrl('http://www.google.com')">Capture</a>
+                </li>
+                <li>
+                    <a @click.once="openUrl('http://www.google.com')">Once</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <!-- 因为 AJAX 库和通用工具的生态已经相当丰富，Vue 核心代码没有重复 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

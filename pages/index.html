@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Polygon Game</title>
+    <style>
+        canvas {
+            z-index: 1001;
+        }
+        body {
+            margin: 0;
+        }
+        #invented-scene {
+            /*margin-top: 30px;*/
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: space-around;
+            justify-content: space-around;
+            z-index: 1000;
+            box-sizing: border-box;
+            padding-bottom: 50px;
+        }
+        .card {
+            width: 180px;
+            height: 200px;
+            margin: 0 10px;
+            border: 4px solid black;
+        }
+
+        .card > div {
+            width: 100%;
+        }
+
+        .card-content {
+            height: 150px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .card-content img {
+            width: 70%;
+        }
+
+        .card-footer {
+            height: 50px;
+            border-top: 4px solid black;
+            text-align: center;
+            line-height: 50px;
+            font-size: 25px;
+        }
+
+
+        .card-footer img {
+            width: 40px;
+            margin:  4px;
+        }
+    </style>
+</head>
+<body style=" background-color: black; ">
+    <div id="main" style="width: 1024px; height: 612px; margin: 0 auto; position: relative">
+        <div id="invented-scene">
+        </div>
+    </div>
+<script src="polygongame/lib/pixi.js"></script>
+<script src="polygongame/lib/pixi-layers.js"></script>
+<script src="polygongame/js/data.js"></script>
+<script>
+    let Application = PIXI.Application,
+        loader = PIXI.loader,
+        resources = PIXI.loader.resources,
+        Sprite = PIXI.Sprite,
+        Container = PIXI.Container,
+        Graphics = PIXI.Graphics,
+        Text = PIXI.Text,
+        TextStyle = PIXI.TextStyle;
+
+    let app = new PIXI.Application({
+        width: 1024,
+        height: 612,
+        backgroundColor: 0xFFFFFF
+    });
+
+    let main = document.getElementById('main');
+
+    app.renderer.view.style.position = "absolute";
+    app.renderer.view.style.display = "inline-block";
+    app.renderer.autoResize = true;
+
+    main.appendChild(app.view);
+
+</script>
+
+<script src="polygongame/js/config.js"></script>
+<script src="polygongame/js/util.js"></script>
+<script src="polygongame/js/event.js"></script>
+<script src="polygongame/js/main.js"></script>
+</body>
+</html>
