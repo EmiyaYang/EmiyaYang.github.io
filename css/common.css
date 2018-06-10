@@ -3,7 +3,11 @@ hr {
 }
 
 body {
-    margin: 20px;
+    margin: 30px;
+}
+
+main {
+    padding: 0 30px;
 }
 
 .float-container {

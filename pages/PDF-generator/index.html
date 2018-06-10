@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF生成</title>
+    <link rel="stylesheet" href="../../css/common.css">
+</head>
+<body>
+
+<main>
+    <form name="letterForm" id="letter-form">
+        <label>
+            <span>收件人姓名：</span>
+            <input name="recipient" type="text" required>
+        </label>
+        <div>
+
+            <label>
+                <span>发信人姓名：</span>
+                <input name="addresser" type="text" required>
+            </label>
+        </div>
+        <div>
+            <label style="overflow: hidden">
+                <span style="display: block">内容：</span>
+                <textarea name="content" cols="30" rows="10" required></textarea>
+            </label>
+        </div>
+        <div>
+            <button  id="btn" type="submit">生成PDF</button>
+        </div>
+    </form>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js"
+        integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs"
+        crossorigin="anonymous"></script>
+
+<script>
+    // Default export is a4 paper, portrait, using milimeters for units
+    let doc = new jsPDF();
+    let btn = document.getElementById('btn');
+
+    let formNode = document.getElementById('letter-form');
+    //formNode.onclick = generate; //这样不能触发H5的表单验证事件
+    //btn.onsubmit = generate; //这样并没有成功改写提交方法
+
+    formNode.onsubmit = generate;
+
+    function generate(e) {
+        e.preventDefault();
+        let f = new FormData(formNode);
+
+        doc.text('Recipient: ' + f.get('recipient'), 10, 10);
+        doc.text('Adresser: ' + f.get('addresser'), 10, 20);
+        doc.text('content: ' + f.get('content'), 10, 30);
+        doc.save('a4.pdf');
+    }
+</script>
+</body>
+</html>

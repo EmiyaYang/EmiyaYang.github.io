@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Http消息分析</title>
+    <link type="text/css" href="../css/common.css"/>
+</head>
+<body>
+
+<main>
+    <div>
+        <p>以用chrome捕获的一次Http消息为例。在Headers选项卡里可以看到各个消息头的概览。分为以下几类：</p>
+        <ul>
+            <li>General： 同时适用于请求和响应消息</li>
+            <li>Response headers</li>
+            <li>Request headers</li>
+            <li>Query string parameters</li>
+            <li>Form data</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div>
+        <h2>General headers</h2>
+        <h3>Request Url</h3>
+        <p>请求域名，这里加上了token用于防范csrf攻击</p>
+        <h3>Request Method</h3>
+        <table>
+            <tr>
+                <td>GET</td>
+                <td>向web服务器请求一个文件</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>向web服务器发送数据</td>
+            </tr>
+            <tr>
+                <td>PUT</td>
+                <td>向web服务器发送数据并存储在服务器内部</td>
+            </tr>
+            <tr>
+                <td>HEAD</td>
+                <td>检查一个对象是否存在</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td>从web服务器上删除一个文件</td>
+            </tr>
+            <tr>
+                <td>CONNECT</td>
+                <td>对通道提供支持</td>
+            </tr>
+            <tr>
+                <td>TRACE</td>
+                <td>跟踪到服务器的路径</td>
+            </tr>
+            <tr>
+                <td>OPTIONS</td>
+                <td>查询web服务器的性能</td>
+            </tr>
+        </table>
+        <h3>Remote Address</h3>
+        <h3>Referrer policy</h3>
+        <p>用以指定该请求是从哪个页面跳转页来的，常被用于分析用户来源等信息。</p>
+        <table>
+            <tr>
+                <td>no-referrer</td>
+                <td>不传递。</td>
+            </tr>
+            <tr>
+                <td>no-referrer-when-downgrade</td>
+                <td>当发生降级（比如从 https:// 跳转到 http:// ）时，不传递 Referrer 报头。但是反过来的话不受影响。通常也会当作浏览器的默认安全策略。</td>
+            </tr>
+            <tr>
+                <td>same-origin</td>
+                <td>跳转前后页面同源时才会传递。</td>
+            </tr>
+            <tr>
+                <td>origin</td>
+                <td>过滤掉跳转前页面的参数以及路径部分，仅将协议、域名和端口作为Referrer.</td>
+            </tr>
+            <tr>
+                <td>unsafe-url</td>
+                <td>任意情况下，都发送当前页的全部地址到 Referrer，最宽松和不安全的策略。</td>
+            </tr>
+        </table>
+        <h3>Status Code</h3>
+        <ul>
+            <li>
+                1xx: 信息性状态码，表示服务器已接收了客户端请求，客户端可继续发送请求。
+                <ul>
+                    <li>100: Continue</li>
+                    <li>101: Switching Protocols</li>
+                </ul>
+            </li>
+            <li>
+                2xx: 成功状态码，表示服务器已成功接收到请求并进行处理。
+                <ul>
+                    <li>200: OK 表示客户端请求成功。</li>
+                    <li>204: NO CONTENT 成功，但不返回任何实体的主体部分</li>
+                    <li>206: Partial Content 成功执行了一个范围（Range）请求</li>
+                </ul>
+            </li>
+            <li>
+                3xx: 重定向状态码，表示服务器要求客户端重定向。
+                <ul>
+                    <li>301 Moved Permanently 永久性重定向，响应报文的Location首部应该有该资源的新URL</li>
+                    <li>302 Found 临时性重定向，响应报文的Location首部给出的URL用来临时定位资源</li>
+                    <li>303 See Other 请求的资源存在着另一个URI，客户端应使用GET方法定向获取请求的资源</li>
+                    <li>304 Not Modified 服务器内容没有更新，可以直接读取浏览器缓存</li>
+                    <li>307 Temporary Redirect 临时重定向。与302 Found含义一样。302禁止POST变换为GET，但实际使用时并不一定，307则更多浏览器可能会遵循这一标准，但也依赖于浏览器具体实现</li>
+                </ul>
+            </li>
+            <li>
+                 4xx：客户端错误状态码，表示客户端的请求有非法内容。
+                <ul>
+                    <li>400 Bad Request 表示客户端请求有语法错误，不能被服务器所理解</li>
+                    <li>401 Unauthonized 表示请求未经授权，该状态代码必须与 WWW-Authenticate 报头域一起使用</li>
+                    <li>403 Forbidden 表示服务器收到请求，但是拒绝提供服务，通常会在响应正文中给出不提供服务的原因</li>
+                    <li>404 Not Found 请求的资源不存在，例如，输入了错误的URL</li>
+                </ul>
+            </li>
+            <li>
+                5xx：服务器错误状态码，表示服务器未能正常处理客户端的请求而出现意外错误。
+                <ul>
+                    <li>500 Internal Server Error 表示服务器发生不可预期的错误，导致无法完成客户端的请求</li>
+                    <li>502 Bad Gateway 错误网关</li>
+                    <li>503 Service Unavailable 表示服务器当前不能够处理客户端的请求，在一段时间之后，服务器可能会恢复正常</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div>
+        <h2>Request Headers</h2>
+        <h3>Accept</h3>
+        <p>	用户代理期望的MIME 类型列表。</p>
+        <p>Multipurpose Internet Mail Extensions（多功能 Internet 邮件扩充服务），它是一种多用途网际邮件扩充协议，在1992年最早应用于电子邮件系统，但后来也应用到浏览器。</p>
+        <table>
+            <tr>
+                <td>text/html</td>
+                <td>表示html文档</td>
+            </tr>
+            <tr>
+                <td>application/xhtml+xml</td>
+                <td>表示xhtml文档</td>
+            </tr>
+            <tr>
+                <td>application/xml</td>
+                <td>表示xml文档</td>
+            </tr>
+        </table>
+        <p>斜杠前面的是 type（类型），斜杠后面的是 subtype（子类型）</p>
+        <h3>Accept-Encoding</h3>
+        <p>	浏览器支持的内容编码</p>
+        <p>其中，gzip、compress、deflate、br分别采用不同的压缩算法。</p>
+        <p>默认值identity用于指代自身（例如：未经过压缩和修改）</p>
+        <p>*匹配其他任意未在该首部字段中列出的编码方式。  </p>
+        <p>;q=(q值加权), ex: Accept-Encoding: br;q=1.0, gzip;q=0.8, *;q=0.1</p>
+        <h3>Accept-Language</h3>
+        <p>浏览器支持的语言类型，并且优先支持靠前的语言类型</p>
+        <h3>Cache-Control</h3>
+        <p>	指定请求和响应遵循的缓存机制 </p>
+        <table>
+            <tr>
+                <td>Public</td>
+                <td>指示响应可被任何缓存区缓存</td>
+            </tr>
+            <tr>
+                <td>Private</td>
+                <td>指示对于单个用户的整个或部分响应消息，不能被共享缓存处理</td>
+            </tr>
+            <tr>
+                <td>no-cache</td>
+                <td>指示请求或响应消息不能缓存</td>
+            </tr>
+            <tr>
+                <td>no-store</td>
+                <td>请求和响应消息都不使用缓存</td>
+            </tr>
+        </table>
+        <h3>Host</h3>
+        <p>请求的服务器URL</p>
+        <h3>Referer</h3>
+        <p>该页面的来源URL</p>
+        <h3>User-Agent</h3>
+        <p>用户使用的客户端的一些必要信息，比如操作系统、浏览器及版本、浏览器渲染引擎等。</p>
+        <h3>Connection</h3>
+        <p>取值： keep-alive / close</p>
+        <p>选择是否开启HTTP持久化连接</p>
+        <p>每次HTTP请求与响应都要发生一次TCP三次握手与四次挥手。当一个HTML页面资源很多的时候，这会增加网络通信量的开销。HTTP持久连接允许在事务处理结束后保持打开TCP连接，以便后续重用。</p>
+        <h3>Cookie</h3>
+        <p></p>
+        <h3>Pragma</h3>
+        <p>可用值只有no-cache， 与Cache-Control:no-cache等效</p>
+        <h3>Content-Type</h3>
+        <p>提交内容的MIME类型以及内容编码。</p>
+        <table>
+            <tr>
+                <td>application/x-www-form-urlencoded</td>
+                <td>默认值，数据被编码为名称/值对。</td>
+            </tr>
+            <tr>
+                <td>multipart/form-data</td>
+                <td>数据被编码为一条消息，页上的每个控件对应消息中的一个部分。</td>
+            </tr>
+            <tr>
+                <td>text/plain</td>
+                <td>数据以纯文本形式(text/json/xml/html)进行编码</td>
+            </tr>
+            <tr>
+                <td>application/json</td>
+                <td>提交JSON数据。</td>
+            </tr>
+        </table>
+        <h3>Content-Length</h3>
+        <p>指定响应内容的字节大小。</p>
+        <p>长连接代表在连接期间会有多个http请求响应在排队，而服务器不能够关闭连接，客户端只能通过Content-Length知道一条报文在哪里结束，下一条报文在哪里开始。除非使用了分块编码Transfer-Encoding: chunked。</p>
+    </div>
+
+    <hr>
+
+    <div>
+        <h2>Response Headers</h2>
+        <h3>Date</h3>
+        <p>消息发送的时间。</p>
+        <h3>Server</h3>
+        <p>服务器名字</p>
+        <h3>Pragma</h3>
+        <h3>Expires</h3>
+        <p>设置资源过期时间。</p>
+        <h3>Transfer-Encoding</h3>
+        <p>唯一取值：chunked。</p>
+        <p>分块传输编码。</p>
+        <p>分块编码把报文分割成若干个大小已知的块，块之间是紧挨着发送的，这样就不需要在发送之前知道整个报文的大小了。（也意味着不需要写回Content-Length首部了）</p>
+        <h3>Vary</h3>
+        <p>对于未来的一个请求头，决定使用一个缓存的回复(response)还是向源服务器请求一个新的回复。</p>
+        <p>Vary: Accept-Encoding</p>
+        <p>使用场景: 设想有两个客户，一个使用的旧浏览器不支持压缩，一个使用新的浏览器支持压缩，如果他们都请求同一个网页，那么取决于谁先请求，压缩或非压缩版本便存储在CDN上。这样问题就出现了，旧浏览器请求常规网页但获得缓存的压缩版本，而新浏览器会获得缓存的非压缩版本但尝试去“解压”它。无论哪种方式都是坏消息。</p>
+        <p>Vary:User-Agent  实现代码适配。</p>
+        <p>网站移动版网页的3种方式</p>
+        <ul>
+            <li>响应式页面布局</li>
+            <li>跳转适配： 移动端采用跟桌面端不同的url，服务器检测请求中的UA，若不匹配则重定向到相应的url。</li>
+            <li>代码适配： 服务器根据不同的UA返回不同的页面内容。</li>
+        </ul>
+    </div>
+</main>
+
+</body>
+</html>

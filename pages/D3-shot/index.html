@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>D3学习</title>
+</head>
+<body>
+<main>
+    <div>
+        <h2>D3的核心概念</h2>
+        <p>D3 的全称是（Data-Driven Documents），顾名思义可以知道是一个被数据驱动的文档。</p>
+        <h3>选择集</h3>
+        <ul>
+            <li>d3.select('p'); //选择一个元素</li>
+            <li>d3.selectAll('p'); //选择多个元素</li>
+        </ul>
+        <p>选择语法跟jQuery类似，也可以直接传入node引用。其返回的对象都是选择集，下文用d3o来表示选择集。</p>
+
+        <h3>插入元素</h3>
+        <ul>
+            <li>d3o.append('h1').text('我是插在body内部末尾的元素'); // 在选择集内部末尾插入</li>
+            <li>d3o.insert('h2','#app').text('我是插在id为APP的元素前面的 h2标签'); //在选择集内部的指定dom前插入</li>
+        </ul>
+
+        <h3>删除元素</h3>
+        <p>d3o.remove();</p>
+
+        <h3>数据绑定</h3>
+        <ul>
+            <li>d3o.datum('Hello World'); //将单个数据绑定到选择集上</li>
+            <li>d3o.data([1, 2, 3, 4]); //将数组绑定到选择集上，数组元素依次匹配选择集元素</li>
+        </ul>
+    </div>
+
+
+    <div >
+        <h2>绘制柱状图</h2>
+        <div id="bar-graph-horizon">
+        </div>
+        <p>
+            绘制水平方向上的柱状图，构造一个比例尺，添加一个水平坐标轴
+        </p>
+
+        <div id="bar-graph-vertical"></div>
+    </div>
+
+    <div>
+        <h2>绘制树状图</h2>
+        <div id="tree-graph"></div>
+
+    </div>
+</main>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<script src="js/barGraph.js"></script>
+
+<!--<script src="js/treeGraph.js"></script>-->
+
+</body>
+</html>
