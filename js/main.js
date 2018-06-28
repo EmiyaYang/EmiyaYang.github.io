@@ -94,4 +94,3 @@ var vm = new Vue({
 
 //Vue实例的一些成员可以通过添加$进行访问
 console.log(vm.$el === document.getElementById('#main'));
-

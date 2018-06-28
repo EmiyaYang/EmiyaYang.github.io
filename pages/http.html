@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Http消息分析</title>
-    <link type="text/css" href="../css/common.css"/>
+    <title>Http消息头分析</title>
+    <link rel="stylesheet" href="../css/common.css">
 </head>
 <body>
 
@@ -61,6 +61,7 @@
             </tr>
         </table>
         <h3>Remote Address</h3>
+        <p>远程IP地址</p>
         <h3>Referrer policy</h3>
         <p>用以指定该请求是从哪个页面跳转页来的，常被用于分析用户来源等信息。</p>
         <table>
@@ -130,6 +131,7 @@
                 </ul>
             </li>
         </ul>
+        <p>响应为1xx，204，304相应或者head请求，则直接忽视掉消息实体内容。</p>
     </div>
 
     <hr>
@@ -151,6 +153,10 @@
             <tr>
                 <td>application/xml</td>
                 <td>表示xml文档</td>
+            </tr>
+            <tr>
+                <td>*/*</td>
+                <td>表示任意类型</td>
             </tr>
         </table>
         <p>斜杠前面的是 type（类型），斜杠后面的是 subtype（子类型）</p>
@@ -193,9 +199,13 @@
         <p>选择是否开启HTTP持久化连接</p>
         <p>每次HTTP请求与响应都要发生一次TCP三次握手与四次挥手。当一个HTML页面资源很多的时候，这会增加网络通信量的开销。HTTP持久连接允许在事务处理结束后保持打开TCP连接，以便后续重用。</p>
         <h3>Cookie</h3>
-        <p></p>
+        <p>由服务器发给客户端的特殊信息，而这些信息以文本文件的方式存放在客户端</p>
+        <p>由于HTTP是一种无状态的协议，一旦数据交换完毕，客户端与服务器的连接就会断开，再次交换需要建立新的连接，这就意味着服务器无法从连接上跟踪会话。
+            解决方案就是给就给客户端set不同的cookie作为通行证，这样服务器就能从通行证上确认客户身份了，从而实现会话跟踪。</p>
+        <p><img src="../asset/img/o_Cookie_Session001.png"> </p>
+        <p><a href="https://www.cnblogs.com/andy-zhou/p/5360107.html">more</a> </p>
         <h3>Pragma</h3>
-        <p>可用值只有no-cache， 与Cache-Control:no-cache等效</p>
+        <p>可用值只有no-cache， 与Cache-Control:no-cache等效。优先级高于Cache-Control。</p>
         <h3>Content-Type</h3>
         <p>提交内容的MIME类型以及内容编码。</p>
         <table>
@@ -230,12 +240,15 @@
         <h3>Server</h3>
         <p>服务器名字</p>
         <h3>Pragma</h3>
+        <p>可用值只有no-cache， 与Cache-Control:no-cache等效</p>
         <h3>Expires</h3>
         <p>设置资源过期时间。</p>
         <h3>Transfer-Encoding</h3>
         <p>唯一取值：chunked。</p>
         <p>分块传输编码。</p>
         <p>分块编码把报文分割成若干个大小已知的块，块之间是紧挨着发送的，这样就不需要在发送之前知道整个报文的大小了。（也意味着不需要写回Content-Length首部了）</p>
+        <h3>Set-Cookie</h3>
+        <p>在客户端建立一个cookie，并且在后续的http请求中自动发送这个cookie到服务器端，直到这个cookie过期。</p>
         <h3>Vary</h3>
         <p>对于未来的一个请求头，决定使用一个缓存的回复(response)还是向源服务器请求一个新的回复。</p>
         <p>Vary: Accept-Encoding</p>

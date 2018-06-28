@@ -3,20 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>EmiyaYang's Studio</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-
-    <div>
-        <ul>
-            <li><a href="pages/vue.html">vue官方教程学习</a></li>
-            <li><a href="pages/bfc.html">BFC原理</a> </li>
-            <li><a href="pages/layout.html">布局学习</a> </li>
-            <li><a href="pages/http.html">http消息分析</a></li>
-            <li><a href="pages/polygongame/index.html"  >多边形游戏</a> </li>
-            <li><a href="pages/polygongame-mobile/index.html">多边形游戏移动版</a></li>
-            <li><a href="pages/PDF-generator/index.html">在线生成PDF文件</a></li>
-        </ul>
+    <div class="header">
+        <span>EmiyaYang's Studio</span>
     </div>
 
+    <div style="display: flex; margin-top: 120px; flex-flow: row wrap; justify-content: flex-start">
+
+        <div style="padding: 0  30px 0 100px; flex-grow: 2">
+            <div class="pane card" style="min-width: 400px; max-width: 1000px"></div>
+        </div>
+
+        <div style="padding: 0 30px; flex-grow: 1">
+            <div class="pane" style=" padding: 10px 0 10px 30px; max-width: 300px;">
+                <h2>近期文章</h2>
+                <ul style="">
+                    <li><a href="pages/vue.html">vue官方教程学习</a></li>
+                    <li><a href="pages/bfc.html">BFC原理</a> </li>
+                    <li><a href="pages/layout.html">布局学习</a> </li>
+                    <li><a href="pages/http.html">http消息分析</a></li>
+                    <li><a href="pages/polygongame/index.html"  >多边形游戏</a> </li>
+                    <li><a href="pages/polygongame-mobile/index.html">多边形游戏移动版</a></li>
+                    <li><a href="pages/PDF-generator/index.html">在线生成PDF文件</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <script src="js/algorithm.js"></script>
+    <script src="js/30.js"></script>
 </body>
 </html>
+

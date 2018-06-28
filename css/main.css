@@ -1,3 +1,29 @@
+body {
+    background-color: #F2F2F2;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 0.5em 0;
+}
+
+.header {
+    background-color: #363636;
+    color: whitesmoke;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 85px;
+    font-size: 30px;
+    padding: 25px 0 25px 100px;
+    box-sizing: border-box;
+}
+
 .redText {
     color: tomato;
 }
@@ -5,4 +31,15 @@
 .text-danger {
     color: red;
     font-family: "Agency FB", sans-serif;
+}
+
+.pane {
+    border-radius: 5px;
+    border: 1px solid #dadada;
+    border-top: none;
+    background-color: white;
+}
+
+.card {
+    min-height: 500px;
 }
