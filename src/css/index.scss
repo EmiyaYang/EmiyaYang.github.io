@@ -1,0 +1,198 @@
+body {
+  margin: 0;
+  display: inline-block; // 触发 bfc 清除浮动
+  width: 100%;
+  overflow: hidden; // 去除滚动条
+  font-size: 18px;
+  background-color: white;
+}
+
+
+hr {
+  margin: 50px auto;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+.header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  opacity: 0.7;
+  background: {
+    color: black;
+    image: url('../assets/img/header_back.jpg');
+    repeat: no-repeat;
+    size: cover;
+    attachment: fixed;
+    position: 50% 50%;
+  }
+  text-align: center;
+}
+
+
+#main-swiper > .swiper-wrapper {
+  font-family: verdana, serif;
+  line-height: 2em;
+  height: 100vh;
+  > .swiper-slide:nth-child(1) {
+    text-align: center;
+    #particles-js {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .avatar {
+      box-shadow: 1px 1px 20px;
+      border: 10px solid #f0f0f0;
+      border-radius: 100%;
+      width: 200px;
+      height: 200px;
+      margin-top: 30vh;
+      position: relative;
+    }
+    .slogan {
+      position: relative;
+      margin-top: 1em;
+      font-size: 30px;
+      display: inline-block;
+    }
+    @media screen and (max-width: 760px) {
+      #particles-js {
+        display: none;
+      }
+      .avatar {
+        width: 150px;
+        height: 150px;
+      }
+      .slogan {
+        margin-top: 10px;
+        font-size: 20px;
+      }
+    }
+  }
+
+  > .swiper-slide:nth-child(2) {
+    background-color: #6D6960;
+    text-align: center;
+    color: white;
+
+    hr {
+      display: inline-block;
+      width: 70%;
+    }
+    .footer {
+      width: 50%;
+      margin: 0 auto;
+    }
+
+    @media screen and (max-width: 760px) {
+      hr {
+        margin: 1em 0;
+        width: 80%;
+      }
+      .footer {
+        text-align: justify;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0 2em;
+      }
+    }
+  }
+
+  > .swiper-slide:nth-child(3) {
+    background-color: white;
+  }
+}
+
+.two-columns-layout {
+  overflow: hidden;
+  max-width: 80%;
+  color: white;
+  margin: 0 auto;
+  .left-modal {
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 1em;
+  }
+  .right-modal {
+    float: right;
+    padding: 1em;
+    box-sizing: border-box;
+    width: 50%;
+  }
+}
+
+.card-group {
+  width: 80%;
+  margin: 30vh auto 0 auto;
+  display: -webkit-flex;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-around;
+  .card {
+    text-align: center;
+    padding: 1em 0;
+    img {
+      width: 50px;
+      height: 50px;
+    }
+    @media screen and (max-width: 760px) {
+      width: 50%;
+    }
+  }
+  @media screen and (max-width: 760px) {
+    margin-top: 10vh;
+  }
+}
+
+/*****************************************作品页******************************************/
+
+#sub-swiper > .swiper-wrapper {
+  color: white;
+  > .swiper-slide {
+    text-align: center;
+    padding-top: 5vh;
+    transition: background-color 500ms linear 200ms;
+    img {
+      max-width: 500px;
+      max-height: 500px;
+    }
+    hr {
+      margin-top: 0.5em;
+      width: 50%;
+      border-color: darken(#fff, 30%);
+    }
+    .description {
+      display: inline-block;
+      max-width: 800px;
+    }
+    @media screen and (max-width: 760px) {
+      .description {
+        display: none;
+      }
+      hr {
+        display: none;
+      }
+    }
+  }
+  > .swiper-slide:nth-child(1).swiper-slide-active {
+    //background-color: lighten(rgb(11, 18, 43), 30%);
+    background-color: #87BCDE;
+  }
+
+  > .swiper-slide:nth-child(2).swiper-slide-active {
+    //background-color: lighten(rgb(27, 38, 46), 30%);
+    background-color: #4E4D5C;
+  }
+  > .swiper-slide:nth-child(3).swiper-slide-active {
+    //background-color: lighten(tomato, 10%);
+    background-color: #805E73;
+  }
+}

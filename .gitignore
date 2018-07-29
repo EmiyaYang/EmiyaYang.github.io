@@ -1,0 +1,8 @@
+*.bak
+*.orig
+*.imi
+.idea
+/.idea/workspace.xml
+.sass-cache
+node_modules
+package-lock.json
