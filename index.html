@@ -1,40 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>EmiyaYang's Studio</title>
+    <meta name="viewport" charset="UTF-8"
+          content="width=width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0">
+    <title>EmiyaYang's CV</title>
     <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="lib/swiper/swiper.css">
 </head>
 <body>
-    <div class="header">
-        <span>EmiyaYang's Studio</span>
-    </div>
 
-    <div style="display: flex; margin-top: 120px; flex-flow: row wrap; justify-content: flex-start">
+<div class="header"></div>
 
-        <div style="padding: 0  30px 0 100px; flex-grow: 2">
-            <div class="pane card" style="min-width: 400px; max-width: 1000px"></div>
+<div id="main-swiper" class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide" v-cloak>
+            <div id="particles-js" style=""></div>
+            <img class="avatar" src="assets/img/myavtar.png">
+            <br>
+            <span
+                    class="txt-rotate slogan"
+                    data-period="2000"
+                    :data-rotate="message"></span>
         </div>
-
-        <div style="padding: 0 30px; flex-grow: 1">
-            <div class="pane" style=" padding: 10px 0 10px 30px; max-width: 300px;">
-                <h2>近期文章</h2>
-                <ul style="">
-                    <li><a href="pages/vue.html">vue官方教程学习</a></li>
-                    <li><a href="pages/bfc.html">BFC原理</a> </li>
-                    <li><a href="pages/layout.html">布局学习</a> </li>
-                    <li><a href="pages/http.html">http消息分析</a></li>
-                    <li><a href="pages/polygongame/index.html"  >多边形游戏</a> </li>
-                    <li><a href="pages/polygongame-mobile/index.html">多边形游戏移动版</a></li>
-                    <li><a href="pages/PDF-generator/index.html">在线生成PDF文件</a></li>
-                </ul>
+        <div class="swiper-slide">
+            <div class="card-group">
+                <div class="card">
+                    <img src="assets/img/location.svg">
+                    <br>
+                    <span>坐标 / 广东</span>
+                </div>
+                <div class="card">
+                    <img src="assets/img/degree.svg">
+                    <br>
+                    <span>学历 / 学科</span>
+                </div>
+                <div class="card">
+                    <img src="assets/img/age.svg">
+                    <br>
+                    <span>年龄 / 22岁</span>
+                </div>
+                <div class="card">
+                    <img src="assets/img/status.svg">
+                    <br>
+                    <span>状态 / 应届</span>
+                </div>
             </div>
-        </div>
 
+            <hr>
+
+            <div class="footer">
+                热爱设计，热爱前端工作，重视基础也喜欢探索前沿技术。
+                <br>
+                善于阶段性反思总结，对许多问题有自己独到的见解。
+            </div>
+
+        </div>
+        <div id="sub-swiper" class="swiper-slide">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" v-for="item in creations">
+                    <img :src="item.img">
+                    <br>
+                    <span>{{item.name}}</span>
+                    <br>
+                    <hr>
+                    <span class="description">{{item.description}}</span>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+
+
+        </div>
     </div>
-    <script src="js/algorithm.js"></script>
-    <script src="js/30.js"></script>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="https://threejs.org/examples/js/libs/stats.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="lib/swiper/swiper.min.js"></script>
+<script>
+
+    particlesJS.load('particles-js', 'assets/config/particles_2.json', function() {
+        console.log('callback - particles.js config loaded');
+    });
+
+    var app = new Vue({
+        el: '#main-swiper',
+        data: {
+            message: '["你好，这是杨家淇。", "他专注于前端开发。"]',
+            creationIndex: -1,
+            creations: [{
+                name: 'PaPa互娱夜店上墙小程序',
+                img: 'assets/img/demo_preview_1.jpg',
+                description: '在微信小程序刚推出不久尝试开发的一款应用于夜店场景的上墙小程序，实现了土豪榜、霸屏打赏、群聊私聊等功能，后续由于项目交接问题没有进行上线。'
+            }, {
+                name: '多边形H5小游戏',
+                img: 'assets/img/demo_preview_2.png',
+                description: '使用 CoCos 引擎制作的一款 H5 小游戏，这款游戏应用了经典的 DP 问题。'
+            }, {
+                name: 'insight后台监控小程序',
+                img: 'assets/img/demo_preview_3.jpg',
+                description: '这是使用 Gulp + Sass + eCharts + 小程序原生框架构建的一款后台性能监控小程序。'
+            }]
+        },
+        mounted: function () {
+            var self = this;
+            new Swiper('#main-swiper', {
+                mousewheel: true,
+                direction: 'vertical',
+                // loop: true,
+
+                // 如果需要分页器
+                pagination: {
+                    el: '.swiper-pagination',
+                },
+
+                // 如果需要前进后退按钮
+                // navigation: {
+                //     nextEl: '.swiper-button-next',
+                //     prevEl: '.swiper-button-prev',
+                // },
+
+                // 如果需要滚动条
+                // scrollbar: {
+                //     el: '.swiper-scrollbar',
+                // },
+            });
+            new Swiper('#sub-swiper', {
+                direction: 'horizontal',
+                // loop: true,
+                slidesPerView: 'auto',
+
+                // 如果需要分页器
+                pagination: {
+                    el: '.swiper-pagination',
+                },
+                on:{
+                    slideNextTransitionStart: function(){
+                        console.log('switch');
+                        self.creationIndex++;
+                    }
+                }
+            });
+        }
+    });
+
+
+    var TxtRotate = function(el, toRotate, period) {
+        this.toRotate = toRotate;
+        this.el = el;
+        this.loopNum = 0;
+        this.period = parseInt(period, 10) || 2000;
+        this.txt = '';
+        this.tick();
+        this.isDeleting = false;
+    };
+
+    TxtRotate.prototype.tick = function() {
+        var i = this.loopNum % this.toRotate.length;
+        var fullTxt = this.toRotate[i];
+
+        if (this.isDeleting) {
+            this.txt = fullTxt.substring(0, this.txt.length - 1);
+        } else {
+            this.txt = fullTxt.substring(0, this.txt.length + 1);
+        }
+
+        this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+        var that = this;
+        var delta = 300 - Math.random() * 100;
+
+        if (this.isDeleting) { delta /= 2; }
+
+        if (!this.isDeleting && this.txt === fullTxt) {
+            delta = this.period;
+            this.isDeleting = true;
+        } else if (this.isDeleting && this.txt === '') {
+            this.isDeleting = false;
+            this.loopNum++;
+            delta = 500;
+        }
+
+        setTimeout(function() {
+            that.tick();
+        }, delta);
+    };
+
+    window.onload = function() {
+        var elements = document.getElementsByClassName('txt-rotate');
+        for (var i=0; i<elements.length; i++) {
+            var toRotate = elements[i].getAttribute('data-rotate');
+            var period = elements[i].getAttribute('data-period');
+            if (toRotate) {
+                new TxtRotate(elements[i], JSON.parse(toRotate), period);
+            }
+        }
+        // INJECT CSS
+        var css = document.createElement("style");
+        css.type = "text/css";
+        css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
+        document.body.appendChild(css);
+    };
+</script>
 </body>
 </html>
 

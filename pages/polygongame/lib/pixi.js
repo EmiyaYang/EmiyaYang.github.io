@@ -20672,7 +20672,7 @@ exports.default = {
   SPRITE_BATCH_SIZE: 4096,
 
   /**
-   * The prefix that denotes a URL is for a retina asset.
+   * The prefix that denotes a URL is for a retina assets.
    *
    * @static
    * @memberof PIXI.settings
@@ -28058,14 +28058,14 @@ function rgb2hex(rgb) {
 }
 
 /**
- * get the resolution / device pixel ratio of an asset by looking for the prefix
+ * get the resolution / device pixel ratio of an assets by looking for the prefix
  * used by spritesheets and image urls
  *
  * @memberof PIXI.utils
  * @function getResolutionOfUrl
  * @param {string} url - the image path
  * @param {number} [defaultValue=1] - the defaultValue if no filename prefix is set.
- * @return {number} resolution / device pixel ratio of an asset
+ * @return {number} resolution / device pixel ratio of an assets
  */
 function getResolutionOfUrl(url, defaultValue) {
     var resolution = _settings2.default.RETINA_PREFIX.exec(url);
@@ -28822,7 +28822,7 @@ function deprecation(core) {
          */
         ParticleContainer: {
             get: function get() {
-                warn('The ParticleContainer class has been moved to particles.ParticleContainer, ' + 'please use particles.ParticleContainer from now on.');
+                warn('The ParticleContainer class has been moved to particles-js.ParticleContainer, ' + 'please use particles-js.ParticleContainer from now on.');
 
                 return particles.ParticleContainer;
             }
@@ -36589,7 +36589,7 @@ var AppPrototype = _Application2.default.prototype;
 AppPrototype._loader = null;
 
 /**
- * Loader instance to help with asset loading.
+ * Loader instance to help with assets loading.
  * @name PIXI.Application#loader
  * @type {PIXI.loaders.Loader}
  */
@@ -38528,7 +38528,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 /**
  * The ParticleContainer class is a really fast version of the Container built solely for speed,
- * so use when you need a lot of sprites or particles. The tradeoff of the ParticleContainer is that most advanced
+ * so use when you need a lot of sprites or particles-js. The tradeoff of the ParticleContainer is that most advanced
  * functionality will not work. ParticleContainer implements the basic object transform (position, scale, rotation)
  * and some advanced functionality like tint (as of v4.5.6).
  * Other more advanced functionality like masking, children, filters, etc will not work on sprites in this batch.
@@ -38549,13 +38549,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  *
  * @class
  * @extends PIXI.Container
- * @memberof PIXI.particles
+ * @memberof PIXI.particles-js
  */
 var ParticleContainer = function (_core$Container) {
     _inherits(ParticleContainer, _core$Container);
 
     /**
-     * @param {number} [maxSize=1500] - The maximum number of particles that can be rendered by the container.
+     * @param {number} [maxSize=1500] - The maximum number of particles-js that can be rendered by the container.
      *  Affects size of allocated buffers.
      * @param {object} [properties] - The properties of children that should be uploaded to the gpu and applied.
      * @param {boolean} [properties.vertices=false] - When true, vertices be uploaded and applied.
@@ -38564,9 +38564,9 @@ var ParticleContainer = function (_core$Container) {
      * @param {boolean} [properties.rotation=false] - When true, rotation be uploaded and applied.
      * @param {boolean} [properties.uvs=false] - When true, uvs be uploaded and applied.
      * @param {boolean} [properties.tint=false] - When true, alpha and tint be uploaded and applied.
-     * @param {number} [batchSize=16384] - Number of particles per batch. If less than maxSize, it uses maxSize instead.
+     * @param {number} [batchSize=16384] - Number of particles-js per batch. If less than maxSize, it uses maxSize instead.
      * @param {boolean} [autoResize=false] If true, container allocates more batches in case
-     *  there are more than `maxSize` particles.
+     *  there are more than `maxSize` particles-js.
      */
     function ParticleContainer() {
         var maxSize = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1500;
@@ -38578,7 +38578,7 @@ var ParticleContainer = function (_core$Container) {
 
         // Making sure the batch size is valid
         // 65535 is max vertex index in the index buffer (see ParticleRenderer)
-        // so max number of particles is 65536 / 4 = 16384
+        // so max number of particles-js is 65536 / 4 = 16384
         var _this = _possibleConstructorReturn(this, _core$Container.call(this));
 
         var maxBatchSize = 16384;
@@ -38648,7 +38648,7 @@ var ParticleContainer = function (_core$Container) {
         _this.blendMode = core.BLEND_MODES.NORMAL;
 
         /**
-         * If true, container allocates more batches in case there are more than `maxSize` particles.
+         * If true, container allocates more batches in case there are more than `maxSize` particles-js.
          * @member {boolean}
          * @default false
          */
@@ -38974,7 +38974,7 @@ var ParticleBuffer = function () {
         this.gl = gl;
 
         /**
-         * The number of particles the buffer can hold
+         * The number of particles-js the buffer can hold
          *
          * @member {number}
          */
@@ -39226,7 +39226,7 @@ var ParticleRenderer = function (_core$ObjectRenderer) {
         _classCallCheck(this, ParticleRenderer);
 
         // 65535 is max vertex index in the index buffer (see ParticleRenderer)
-        // so max number of particles is 65536 / 4 = 16384
+        // so max number of particles-js is 65536 / 4 = 16384
         // and max number of element in the index buffer is 16384 * 6 = 98304
         // Creating a full index buffer, overhead is 98304 * 2 = 196Ko
         // let numIndices = 98304;
@@ -40804,7 +40804,7 @@ var _mesh = require('./mesh');
 
 var mesh = _interopRequireWildcard(_mesh);
 
-var _particles = require('./particles');
+var _particles = require('./particles-js');
 
 var particles = _interopRequireWildcard(_particles);
 

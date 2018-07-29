@@ -17,7 +17,7 @@
                 for (var id in entries) {
                     var entry = entries[id];
                     var type = entry[1];
-                    // retrieve minified raw asset
+                    // retrieve minified raw assets
                     if (typeof type === 'number') {
                         entry[1] = assetTypes[type];
                     }
