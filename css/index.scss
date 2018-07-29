@@ -4,6 +4,7 @@ body {
   width: 100%;
   overflow: hidden; // 去除滚动条
   font-size: 18px;
+  background-color: white;
 }
 
 
@@ -20,6 +21,7 @@ hr {
   top: 0;
   width: 100%;
   height: 100vh;
+  opacity: 0.7;
   background: {
     color: black;
     image: url('../assets/img/header_back.jpg');
@@ -33,7 +35,7 @@ hr {
     border-radius: 100%;
     width: 200px;
     height: 200px;
-    margin-top: 35vh;
+    margin-top: 30vh;
   }
   .slogan {
     color: darken(#fff, 10%);
@@ -61,7 +63,7 @@ hr {
       border-radius: 100%;
       width: 200px;
       height: 200px;
-      margin-top: 25vh;
+      margin-top: 30vh;
       position: relative;
     }
     .slogan {
@@ -69,6 +71,19 @@ hr {
       margin-top: 1em;
       font-size: 30px;
       display: inline-block;
+    }
+    @media screen and (max-width: 760px) {
+      #particles-js {
+        display: none;
+      }
+      .avatar {
+        width: 150px;
+        height: 150px;
+      }
+      .slogan {
+        margin-top: 10px;
+        font-size: 20px;
+      }
     }
   }
 
@@ -101,7 +116,7 @@ hr {
   }
 
   > .swiper-slide:nth-child(3) {
-    background-color: black;
+    background-color: white;
   }
 }
 
@@ -178,13 +193,16 @@ hr {
     }
   }
   > .swiper-slide:nth-child(1).swiper-slide-active {
-    background-color: rgb(11, 18, 43);
+    //background-color: lighten(rgb(11, 18, 43), 30%);
+    background-color: #87BCDE;
   }
 
   > .swiper-slide:nth-child(2).swiper-slide-active {
-    background-color: lighten(rgb(27, 38, 46), 5%);
+    //background-color: lighten(rgb(27, 38, 46), 30%);
+    background-color: #4E4D5C;
   }
   > .swiper-slide:nth-child(3).swiper-slide-active {
-    background-color: darken(tomato, 5%);
+    //background-color: lighten(tomato, 10%);
+    background-color: #805E73;
   }
 }
